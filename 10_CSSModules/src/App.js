@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import sz from './App.css';
+import './App.css';
+import styles from './App.module.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -48,9 +49,8 @@ class App extends Component {
 
   render() {
 
-    let classes=[];
-    console.log(sz);
     let persons=null;
+    let rButton =''
     if(this.state.showToggle){
       persons = (
         <div>
@@ -68,12 +68,24 @@ class App extends Component {
         </div>
       );
       // style.backgroundColor="red";
+      rButton=styles.Red;
+
     }
+
+    let classes = [];
+    if(this.state.person.length<=2){
+      classes.push(styles.red);
+    }
+
+    if(this.state.person.length<=1){
+      classes.push(styles.bold);
+    }
+
     return (
-      <div className={classes.App}>
+      <div className={styles.App}>
         <h1>WELCOME</h1>
-        <p >THIS IS AWESOME</p>
-        <button className={classes.btnstyle} onClick={this.showContent}>Click Me</button>
+        <p className={classes.join(' ')}>THIS IS AWESOME</p>
+        <button className={rButton} onClick={this.showContent}>Click Me</button>
          
           {persons}
    
